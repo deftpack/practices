@@ -1,0 +1,325 @@
+
+// ----------------------- TRANSFORMATION
+
+.transform(@transformation) {
+    -webkit-transform: @transformation;
+    -ms-transform: @transformation;
+    -moz-transform: @transformation;
+    -o-transform: @transformation;
+    transform: @transformation;
+}
+
+.transformOrigin(@xOffset, @yOffset) {
+    -webkit-transform-origin: @xOffset @yOffset;
+    -ms-transform-origin: @xOffset @yOffset;
+    -moz-transform-origin: @xOffset @yOffset;
+    -o-transform-origin: @xOffset @yOffset;
+    transform-origin: @xOffset @yOffset;
+}
+
+.flipHorizontally() {
+    -moz-transform: scale(-1,1);
+    -ms-transform: scale(-1,1);
+    -o-transform: scale(-1,1);
+    -webkit-transform: scale(-1,1);
+    transform: scale(-1,1);
+}
+
+.flipVertically() {
+    -moz-transform: scale(1,-1);
+    -ms-transform: scale(1,-1);
+    -o-transform: scale(1,-1);
+    -webkit-transform: scale(1,-1);
+    transform: scale(1,-1);
+}
+
+.rotateY(@deg: 180deg) {
+    -moz-transform: rotatey(@deg);
+    -ms-transform: rotatey(@deg);
+    -o-transform: rotatey(@deg);
+    -webkit-transform: rotatey(@deg);
+    transform: rotatey(@deg);
+}
+
+.rotate(@deg: 90deg) {
+    -webkit-transform: rotate(@deg);
+    -ms-transform: rotate(@deg);
+    -moz-transform: rotate(@deg);
+    -o-transform: rotate(@deg);
+    transform: rotate(@deg);
+}
+
+// ----------------------- 3D SPACE
+
+.perspective(@value: 2000px) {
+    -moz-perspective: @value;
+    -ms-perspective: @value;
+    -webkit-perspective: @value;
+    perspective: @value;
+}
+
+.backfaceVisibility(@value: hidden) {
+    -moz-backface-visibility: @value;
+    -webkit-backface-visibility: @value;
+    backface-visibility: @value;
+}
+
+.preserve3d() {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+// ----------------------- BORDER
+
+.solidBorder(@borderColor, @px: 1px) {
+    border: @px solid @borderColor;
+}
+
+.borderRadius(@radius) {
+    border-radius: @radius;
+}
+
+.borderRadius(@radiusTop, @radiusBottom) {
+    border-radius: @radiusTop @radiusTop @radiusBottom @radiusBottom;
+}
+
+.borderRadius(@radiusTopLeft,@radiusTopRight, @radiusBottomLeft, @radiusBottomRight) {
+    border-radius: @radiusTopLeft @radiusTopRight @radiusBottomRight @radiusBottomLeft;
+}
+
+// ----------------------- BOX SHADOW
+
+.boxShadow (@x, @y, @blur, @spread, @color) {
+    -webkit-box-shadow: @x @y @blur @spread @color;
+    -moz-box-shadow: @x @y @blur @spread @color;
+    box-shadow: @x @y @blur @spread @color;
+}
+
+.innerBoxShadow (@x, @y, @blur, @spread, @color) {
+    -webkit-box-shadow: inset @x @y @blur @spread @color;
+    -moz-box-shadow: inset @x @y @blur @spread @color;
+    box-shadow: inset @x @y @blur @spread @color;
+}
+
+.noBoxShadow () {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+// ----------------------- GRADIENT BACKGROUND
+
+.gradientBackgroundVertical(@startColor, @endColor) {
+    background: @endColor;
+    background: -moz-linear-gradient(top, @startColor 0, @endColor 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, @startColor), color-stop(100%, @endColor)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, @startColor 0, @endColor 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, @startColor 0, @endColor 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, @startColor 0, @endColor 100%); /* IE10+ */
+    background: linear-gradient(to bottom, @startColor 0, @endColor 100%); /* W3C */
+}
+
+.gradientBackgroundHorizontal(@startColor, @endColor) {
+    background: @endColor;
+    background: -moz-linear-gradient(left, @startColor 0, @endColor 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, @startColor), color-stop(100%, @endColor)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, @startColor 0, @endColor 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, @startColor 0, @endColor 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, @startColor 0, @endColor 100%); /* IE10+ */
+    background: linear-gradient(to right, @startColor 0, @endColor 100%); /* W3C */
+}
+
+// ----------------------- ANIMATIONS
+
+.animation(@animationName, @duration: 0.5s ) {
+    -moz-animation: @animationName @duration;
+    -o-animation: @animationName @duration;
+    -webkit-animation: @animationName @duration;
+    animation: @animationName @duration;
+}
+
+.transition(@property: all, @timing: ease, @duration: 0.3s) {
+    -moz-transition: @property @timing @duration;
+    -o-transition: @property @timing @duration;
+    -webkit-transition: @property @timing @duration;
+    transition: @property @timing @duration;
+}
+
+.transitionProperty(@propertyName) {
+    -moz-transition-property: @propertyName;
+    -o-transition-property: @propertyName;
+    -webkit-transition-property: @propertyName;
+    transition-property: @propertyName;
+}
+
+// ----------------------- SCROLLBAR
+
+.scrollbarFaceColor (@value) {
+    -ms-scrollbar-face-color: @value;
+    scrollbar-face-color: @value;
+}
+
+.scrollbarArrowColor (@value) {
+    -ms-scrollbar-arrow-color: @value;
+    scrollbar-arrow-color: @value;
+}
+
+// ----------------------- TYPOGRAPHY
+
+.textOverflow (@value) {
+    -ms-text-overflow: @value;
+    -o-text-overflow: @value;
+    text-overflow: @value;
+}
+
+.textSizeAdjustment (@value) {
+    -webkit-text-size-adjust: @value;
+    -moz-text-size-adjust: @value;
+    -ms-text-size-adjust: @value;
+    text-size-adjust: @value;
+}
+
+// ----------------------- USER INTERACTION
+
+.nonSelectable() {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.clickable() {
+    cursor: pointer;
+}
+
+// ----------------------- ICONS
+
+.fontAwesome(@icon) {
+    font: normal normal normal 14px/1 FontAwesome;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    content: @icon;
+}
+
+// ----------------------- LAYOUT
+
+.newLayer(@level) {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: @level * 1000;
+}
+
+.overlay(@backgroundColor) {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: default;
+    background-color: @backgroundColor;
+}
+
+.hiddenByDefault() {
+    display: none;
+}
+
+// ----------------------- BOX ARROWS
+// Read More: http://cssarrowplease.com/
+
+.boxArrow() {
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+
+.boxArrowUp(@backgroundColor, @borderColor, @size: 15px, @borderWidth: 1px) {
+    &:after, &:before {
+        bottom: 100%;
+        left: 50%;
+        .boxArrow()
+    }
+
+    &:after {
+        border-bottom-color: @backgroundColor;
+        border-width: @size;
+        margin-left: -@size;
+    }
+
+    &:before {
+        border-bottom-color: @borderColor;
+        border-width: @size + 1px + @borderWidth;
+        margin-left: -(@size + 1px + @borderWidth);
+    }
+}
+
+
+.boxArrowDown(@backgroundColor, @borderColor, @size: 15px, @borderWidth: 1px) {
+    &:after, &:before {
+        top: 100%;
+        left: 50%;
+        .boxArrow()
+    }
+
+    &:after {
+        border-top-color: @backgroundColor;
+        border-width: @size;
+        margin-left: -@size;
+    }
+
+    &:before {
+        border-top-color: @borderColor;
+        border-width: @size + 1px + @borderWidth;
+        margin-left: -(@size + 1px + @borderWidth);
+    }
+}
+
+.boxArrowRight(@backgroundColor, @borderColor, @size: 15px, @borderWidth: 1px) {
+    &:after, &:before {
+        left: 100%;
+        top: 50%;
+        .boxArrow()
+    }
+
+    &:after {
+        border-left-color: @backgroundColor;
+        border-width: @size;
+        margin-top: -@size;
+    }
+
+    &:before {
+        border-left-color: @borderColor;
+        border-width: @size + 1px + @borderWidth;
+        margin-top: -(@size + 1px + @borderWidth);
+    }
+}
+
+.boxArrowLeft(@backgroundColor, @borderColor, @size: 15px, @borderWidth: 1px) {
+    &:after, &:before {
+        right: 100%;
+        top: 50%;
+        .boxArrow()
+    }
+
+    &:after {
+        border-right-color: @backgroundColor;
+        border-width: @size;
+        margin-top: -@size;
+    }
+
+    &:before {
+        border-right-color: @borderColor;
+        border-width: @size + 1px + @borderWidth;
+        margin-top: -(@size + 1px + @borderWidth);
+    }
+}
