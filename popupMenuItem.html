@@ -1,0 +1,22 @@
+<script type="text/html" id="popupmenu-template">
+    <div class="popupmenu" data-bind="foreach: $data">
+        <!-- ko component: { name: 'popupmenu-item', params: $data --><!-- /ko -->
+    </div>
+</script>
+
+<script type="text/html" id="popupmenu-item-template">
+    <div data-bind="click: onActivation, attr: { title: tooltip() },
+    popupmenu: { disabled: '.popupmenu-item-disabled', autoClose: parent() && parent() instanceof pf.models.SelectPopupMenuItem },
+    css: { 'popupmenu-item': parent(), 'popupmenu-item-disabled': isDisabled(), 'popupmenu-item-selected': isSelected(),
+        'popupmenu-toplevel-item': !parent(), 'popupmenu-item-childless': !parent() && (!children() || children().length === 0),
+        'add-menu-item': isAddItem() }">
+        <span data-bind="html: displayName"></span>
+        <!-- ko if: children().length > 0 -->
+            <!-- ko if: !parent() --><i class="fa fa-angle-down"></i><!-- /ko -->
+            <!-- ko if: parent()  --><i class="fa fa-angle-right"></i><!-- /ko -->  
+            <div class="popupmenu-submenu" data-bind="foreach: children()">
+                <!-- ko template: { name: 'popupmenu-item-template', data: $data } --><!-- /ko -->
+            </div>
+        <!-- /ko -->
+    </div>
+</script>
