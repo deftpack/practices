@@ -1,0 +1,76 @@
+<script type="text/html" id="accordion-layout-template">
+    <div class="accordion">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <h5><a href="#" class="accordion-toggle arrowed" data-toggle="collapse" data-bind="html: header, css: { 'collapsed': collapsed() === true }, attr: { 'aria-expanded': collapsed() === false, 'data-target': '#' + key() }"></a></h5>
+            </div>
+            <div class="collapse" data-bind="css: { 'in': collapsed() === false }, attr: { 'aria-expanded': collapsed() === false, 'id': key() }">
+                <div class="accordion-inner">
+                        <!-- ko template: { nodes: $componentTemplateNodes, data: $parent } -->
+                        <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="inline-form-input-layout-template">
+    <div class="form-group">
+        <div data-bind="attr: { 'class': columnA }">
+            <label class="parameter-label" data-bind="text: label"></label>
+        </div>
+        <div data-bind="attr: { 'class': columnB }">
+            <!-- ko template: { nodes: $componentTemplateNodes, data: $parent } -->
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script type="text/javascript" language="javascript">
+  (function (window) {
+
+    var unwrap = function(obj) {
+        return Object.prototype.toString.call(obj) === "[object Function]" ? obj() : obj;
+    };
+
+    var createObservable = function(value, defaultProvider) {
+        var defaultValue = unwrap(defaultProvider) || null;
+        var unwrappedValue = unwrap(value);
+        var startValue = unwrappedValue === undefined || unwrappedValue === null ? defaultValue : unwrappedValue;
+        return ko.isObservable(value) ? value : ko.observable(startValue);
+    };
+
+    window.common = window.common || {};
+    common.layouts = common.layouts || {};
+
+    common.layouts.accordion = function(params) {
+        var self = this;
+        self.key = createObservable(params.key, function() { return 'accordion_' + Math.random().toString(36).substring(7); });
+        self.header = createObservable(params.header, "");
+        self.collapsed = createObservable(params.collapsed, true);
+    };
+
+    common.layouts.inlineFormInput = function(params) {
+        var self = this;
+        self.label = createObservable(params.label, "");
+        self.template = createObservable(params.template, "col-md-");
+        self.columnNumberA = createObservable(params.columnNumberA, 4);
+        self.columnNumberB = createObservable(params.columnNumberB, function() { return 12 - self.columnNumberA(); });
+        self.columnA = ko.computed(function() { return self.template() + self.columnNumberA(); });
+        self.columnB = ko.computed(function() { return self.template() + self.columnNumberB(); });
+    };
+  })(window);
+</script>
+
+<script type="text/javascript" language="javascript">
+    ko.components.register('inline-form-input', {
+        template: { element: 'inline-form-input-layout-template' },
+        viewModel: common.layouts.inlineFormInput
+    });
+
+    ko.components.register('accordion', {
+        template: { element: 'accordion-layout-template' },
+        viewModel: common.layouts.accordion
+    });
+</script>
+
